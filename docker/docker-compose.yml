@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+
+  zookeeper:
+    image: 55399571c44c
+    ports:
+      - "2181:2181"
+    network_mode: "host"
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+
+  kafkaserver:
+    image: e40653748b47
+    ports:
+      - "9000:9000"
+    network_mode: "host"
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
