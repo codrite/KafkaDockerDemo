@@ -30,8 +30,10 @@ Download docker desktop here - https://www.docker.com/products/docker-desktop
 
 Use the following docker commands to build the zookeeper and kafkaserver:
 <ul>
+    <li>Browse to the <b>docker</b> folder and execute the following commands</li>
     <li>Zookeeper Build Command : "docker build --tag zookeeper --file Zookeeper ."</li>
     <li>KafkaServer Build Command : "docker build --tag kafka --file KafkaServer ."</li>
+    <li>To Run Zookeeper and Kafka Server Concurrently: "docker-compose up"</li>
 </ul>
 
 ### Additional Links
