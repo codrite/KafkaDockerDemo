@@ -1,22 +1,20 @@
 
-FROM ubuntu:18.04
-
-RUN apt-get update
-RUN apt-get install -y unzip
-RUN apt-get install -y wget
+FROM alpine:3.7
 
 RUN wget http://mirror.cc.columbia.edu/pub/software/apache/kafka/2.5.0/kafka_2.13-2.5.0.tgz
 RUN wget https://download.java.net/java/GA/jdk15/779bf45e88a44cbd9ea6621d33e33db1/36/GPL/openjdk-15_linux-x64_bin.tar.gz
 
+RUN mkdir /opt
 RUN cd /opt
 RUN tar xzf /kafka_2.13-2.5.0.tgz
 RUN mv kafka_2.13-2.5.0 /opt
 RUN tar xzf /openjdk-15_linux-x64_bin.tar.gz
 RUN mv jdk-15 /opt
+RUN rm -f /kafka_2.13-2.5.0.tgz /openjdk-15_linux-x64_bin.tar.gz
 ENV PATH="${PATH}:/opt/jdk-15/bin:."
 
-EXPOSE 9000
+EXPOSE 9092
 
-ENTRYPOINT ["/opt/kafka_2.13-2.5.0/bin/kafka-server-start.sh", "/opt/kafka_2.13-2.5.0/config/server.properties"]
+ENTRYPOINT ["/opt/kafka_2.13-2.5.0/bin/kafka-server-start.sh", "/opt/kafka_2.13-2.5.0/config/server.properties", "--host", "0.0.0.0"]
 
 

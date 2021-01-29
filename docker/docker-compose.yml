@@ -1,6 +1,19 @@
 version: "3.8"
 services:
 
+  kafka-app:
+    image: kafka-app
+    ports:
+        - "8080:8080"
+    network_mode: "host"
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+
   zookeeper:
     image: zookeeper
     ports:
@@ -17,7 +30,7 @@ services:
   kafkaserver:
     image: kafka
     ports:
-      - "9000:9000"
+      - "9092:9092"
     network_mode: "host"
     deploy:
       replicas: 1
