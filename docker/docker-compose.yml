@@ -28,7 +28,7 @@ services:
         condition: on-failure
 
   kafkaserver:
-    image: kafka
+    image: kafkaserver
     ports:
       - "9092:9092"
     network_mode: "host"
